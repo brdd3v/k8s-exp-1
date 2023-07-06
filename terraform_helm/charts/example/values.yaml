@@ -1,0 +1,18 @@
+replicaCount: 3
+
+image:
+  pullPolicy: Never
+
+app:
+  name: fastapi
+  image: fastapi-app
+  service:
+    port: 8000
+    type: LoadBalancer
+
+db:
+  name: redis
+  image: redis:7.0-alpine
+  service:
+    port: 6379
+    type: ClusterIP
