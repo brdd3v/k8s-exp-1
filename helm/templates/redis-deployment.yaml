@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.db.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.db.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.db.name }}
+    spec:
+      containers:
+      - name: "redis-{{ .Chart.Name }}"
+        image: {{ .Values.db.image }}
+        ports:
+        - containerPort: {{ .Values.db.service.port }}
